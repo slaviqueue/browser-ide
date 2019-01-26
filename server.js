@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
-import executeJavascript from './executers/javascript'
+import executeNodejs from './executers/nodejs'
 import { log } from './utils'
 
 const app = express()
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const executors = {
-	javascript: executeJavascript
+	nodejs: executeNodejs
 }
 
 app.post('/api/run/:language', (req, res) => {
