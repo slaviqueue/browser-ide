@@ -24,6 +24,7 @@ app.post('/api/run/:language', (req, res) => {
 
 	executors[language](userCode)
 		.then(result => res.send(result))
+		.catch(log)
 })
 
 app.listen(PORT_NUMBER, () => log(`Listening on port ${ PORT_NUMBER }`))
