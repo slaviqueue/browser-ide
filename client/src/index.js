@@ -1,9 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { directive } from 'babel-types';
-
-const App = () => (
-    <div>Hello!</div>
-)
+import App from './components/App'
 
 ReactDOM.render(<App/>, document.querySelector('#root'))
