@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js --exec babel-node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha \"tests\"  --compilers js:@babel/register"
   },
   "keywords": [
     "web",
@@ -23,6 +23,7 @@
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.9"
   }
 }
