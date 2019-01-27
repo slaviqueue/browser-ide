@@ -1,13 +1,3 @@
-import { exec as execCb } from 'child_process'
-
-export const exec = command =>
-	new Promise((resolve, reject) =>
-		execCb(
-			command, 
-			(err, stdout, stderr) => err ? reject({ err, stdout, stderr }) : resolve({ err, stdout, stderr })
-		)
-	)
-
 export const removeLastLine = str =>
 	str.split('\n').slice(0, -2).join('\n')
 
@@ -19,3 +9,7 @@ const decollide = () =>
 	Math.random().toString(36).substring(7)
 
 export const id = something => something
+
+export const highlight = prop => obj => obj[prop] 
+
+export const delayed = (f, delay,  ...args) => setTimeout(() => f(...args), delay)

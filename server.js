@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import path from 'path'
 
 import executeNodejs from './executers/nodejs'
 import { log } from './utils'
@@ -26,5 +27,11 @@ app.post('/api/run/:language', (req, res) => {
 		.then(result => res.send(result))
 		.catch(log)
 })
+
+app.use(express.static(path.join(__dirname, 'client/public')));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+});
 
 app.listen(PORT_NUMBER, () => log(`Listening on port ${ PORT_NUMBER }`))

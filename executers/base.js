@@ -1,5 +1,14 @@
-import { exec, removeLastLine, log, generageContainerName, id } from '../utils'
+import { exec as execCb } from 'child_process'
+import { removeLastLine, log, generageContainerName, id } from '../utils'
 
+const exec = command =>
+	new Promise((resolve, reject) =>
+		execCb(
+			command, 
+			(err, stdout, stderr) => err ? reject({ err, stdout, stderr }) : resolve({ err, stdout, stderr })
+		)
+    )
+    
 export default (language, dockerCmd) => {
     const container = generageContainerName(language)
     const command = `timeout --signal=SIGTERM 2 \

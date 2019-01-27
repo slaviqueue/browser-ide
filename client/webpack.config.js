@@ -1,3 +1,6 @@
+const path = require('path')
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+
 module.exports = {
     output: {
         path: `${ __dirname }/public/`
@@ -12,5 +15,13 @@ module.exports = {
           }
         }
       ]
-    }
+    },
+    resolve: {
+      alias: {
+        utils: path.resolve(__dirname, '../utils')
+      }
+    },
+    plugins: [
+      new LiveReloadPlugin()
+    ]
   };
