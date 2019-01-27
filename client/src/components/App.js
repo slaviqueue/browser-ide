@@ -12,22 +12,22 @@ const AppContainer = styled.div`
     height: 100%;
 `
 
-const Index = () => <h2>Home</h2>;
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
+const Index = () => <h2>Home</h2>
+const About = () => <h2>About</h2>
+const Users = () => <h2>Users</h2>
 
 const App = () => (
-  <Router>
-    <AppContainer>
-      <Route path="/" exact component={LanguageSelectionPage} />
-    </AppContainer>
-  </Router>
-);
+	<Router>
+		<AppContainer>
+			<Route path="/" exact component={LanguageSelectionPage} />
+		</AppContainer>
+	</Router>
+)
 
 axios.post('api/run/nodejs', {
-        userCode: 'console.log(1)'
-    })
-    .then(highlight('data'))
-    .then(console.log)
+	userCode: 'console.log(1)'
+})
+	.then(highlight('data'))
+	.then(console.log)
 
 export default App
