@@ -31,7 +31,7 @@ export default (language, dockerCmd) => code => {
                     -v $(pwd)/pool/${ container }:/usr/share/index \
                     --name ${ container } ${ language }:executors \
                     /bin/bash -c "${ dockerCmd }";
-                  docker rm -f ${ container }`
+                   docker rm -f ${ container }`
 
   return writeFile(`./pool/${ container }`, code)
     .then(() => exec(command))
