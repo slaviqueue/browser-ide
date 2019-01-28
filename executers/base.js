@@ -14,14 +14,13 @@ const exec = command =>
 
 export default (language, dockerCmd) => {
   const container = generageContainerName(language)
-  const command = `timeout --signal=SIGTERM 2 \
-                   docker run --name ${ container } ${ language }:executors /bin/bash -c "${ dockerCmd }" sleep 300 \
-                   && docker rm ${ container }`
+  const command = `timeout --kill-after 1s 2s\
+                   docker run --name ${ container } ${ language }:executors /bin/bash -c "${ dockerCmd }";\
+                   docker rm -f ${ container};`
 
   return exec(command)
     .then(log)
     .catch(err =>
       exec(`docker rm ${ container }`).then(() => log(err)))
-    .then(({ err, stderr, stdout }) => (err && err.err) || stderr || stdout)
-    .then(removeLastLine)
+    .then(({ err, stderr, stdout }) => (err && err.err) || stderr || removeLastLine(stdout))
 }
