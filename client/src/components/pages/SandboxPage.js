@@ -32,6 +32,17 @@ const runCode = userCode =>
 const SandboxPage = ({ classes }) => {
   const [code, setCode] = useState('')
   const [output, setOutput] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const setData = (output, isLoading) => (
+    setOutput(output),
+    setIsLoading(isLoading)
+  )
+
+  const sendCode = () => (
+    setIsLoading(true),
+    runCode(code).then(output => setData(output, false))
+  )
 
   return (
     <div>
@@ -39,7 +50,8 @@ const SandboxPage = ({ classes }) => {
         variant="contained"
         color="primary"
         className={ classes.button }
-        onClick={ () => runCode(code).then(output => setOutput(output)) }
+        disabled={ isLoading }
+        onClick={ sendCode }
       >
         Run code
       </Button>
