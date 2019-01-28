@@ -12,8 +12,20 @@ import { highlight, log } from 'utils'
 
 import Terminal from '../Terminal'
 
+const SandboxWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+`
+
 const EditorWrapper = styled.div`
   display: flex;
+  height: 100%;
+`
+
+const ButtonWrapper = styled.div`
+  display: block;
 `
 
 const styles = theme => ({
@@ -45,16 +57,18 @@ const SandboxPage = ({ classes }) => {
   )
 
   return (
-    <div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={ classes.button }
-        disabled={ isLoading }
-        onClick={ sendCode }
-      >
-        Run code
-      </Button>
+    <SandboxWrapper>
+      <ButtonWrapper>
+        <Button
+          variant="contained"
+          color="primary"
+          className={ classes.button }
+          disabled={ isLoading }
+          onClick={ sendCode }
+        >
+          Run code
+        </Button>
+      </ButtonWrapper>
 
       <EditorWrapper>
         <AceEditor
@@ -62,6 +76,7 @@ const SandboxPage = ({ classes }) => {
           theme="github"
           value={ code }
           width="50%"
+          height="100%"
           onChange={ code => setCode(code) }
           name="code-editor"
           editorProps={{ $blockScrolling: true }}
@@ -72,7 +87,7 @@ const SandboxPage = ({ classes }) => {
           { output }
         </Terminal>
       </EditorWrapper>        
-    </div>
+    </SandboxWrapper>
   )
 }
 
