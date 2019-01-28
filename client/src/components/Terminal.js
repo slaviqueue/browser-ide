@@ -6,10 +6,10 @@ const TerminalWrapper = styled.pre`
   color: #19d119;
   background-color: #2b3e50;
   font-size: 16px;
-  font-weight: 600;
   padding: 12px;
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
 `
 
 export default ({ children }) => (
