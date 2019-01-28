@@ -13,9 +13,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit * 2,
   }
-});
-
-const onChange = stuff => console.log(stuff)
+})
 
 const runCode = userCode => 
   axios.post('/api/run/nodejs', {
