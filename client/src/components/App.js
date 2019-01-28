@@ -14,6 +14,11 @@ const AppContainer = styled.div`
     height: calc(100% - 64px);
 `
 
+const BreadCrump = styled.span`
+  font-weight: 200;
+  margin-left: 6px;
+`
+
 const App = () => (
   <Router>
     <AppContainer>
@@ -21,6 +26,11 @@ const App = () => (
         <Toolbar>
           <Typography variant="h6" color="inherit">
             DirtyCode
+            <Route
+              path="/sandbox/:language"
+              exact
+              component={ ({ match }) => <BreadCrump>{ match.params.language }</BreadCrump> }
+            />
           </Typography>
         </Toolbar>
       </AppBar>
