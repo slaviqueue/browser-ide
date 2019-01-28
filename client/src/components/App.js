@@ -14,18 +14,18 @@ const AppContainer = styled.div`
 `
 
 const App = () => (
-	<Router>
-		<AppContainer>
-			<Route path="/" exact component={ LanguageSelectionPage } />
-			<Route path="/sandbox/:language" exact component={ Sandbox } />
-		</AppContainer>
-	</Router>
+  <Router>
+    <AppContainer>
+      <Route path="/" exact component={ LanguageSelectionPage } />
+      <Route path="/sandbox/:language" exact component={ Sandbox } />
+    </AppContainer>
+  </Router>
 )
 
 axios.post('api/run/nodejs', {
-		userCode: 'console.log(1)'
-	})
-	.then(highlight('data'))
-	.then(console.log)
+  userCode: 'console.log(1)'
+})
+  .then(highlight('data'))
+  .then(console.log)
 
 export default App

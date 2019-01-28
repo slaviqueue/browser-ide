@@ -7,39 +7,39 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { delayed } from 'utils'
 
 const PageContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 `
 
 const LanguageSelectorContainer = styled.div`
-    display: inline-block;
-    width: 300px;
-    margin-top: -128px;
-    text-align: center;
+  display: inline-block;
+  width: 300px;
+  margin-top: -128px;
+  text-align: center;
 `
 
 const Text = styled.p`
-    font-family: Roboto;
+  font-family: Roboto;
 `
 
 const LanguageSelectionPage = ({ history }) => (
-	<PageContainer>
-		<LanguageSelectorContainer>
-			<Text>Pick your favourite language</Text>
+  <PageContainer>
+    <LanguageSelectorContainer>
+      <Text>Pick your favourite language</Text>
         
-			<Select
-				value="NodeJS"
-				onChange={() => delayed(history.push, 300, '/sandbox/nodejs')}
-			>
-				<MenuItem value="NodeJS">
+      <Select
+        value="NodeJS"
+        onChange={() => delayed(history.push, 300, '/sandbox/nodejs')}
+      >
+        <MenuItem value="NodeJS">
                     NodeJS
-				</MenuItem>
-			</Select>
-		</LanguageSelectorContainer>
-	</PageContainer>
+        </MenuItem>
+      </Select>
+    </LanguageSelectorContainer>
+  </PageContainer>
 )
 
 export default withRouter(LanguageSelectionPage)

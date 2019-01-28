@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Sandbox = () => (
-	<div>Hi!</div>
+  <div>Hi!</div>
 )
 
 export default Sandbox
