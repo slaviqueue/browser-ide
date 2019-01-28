@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import AceEditor from 'react-ace';
+import AceEditor from 'react-ace'
 import axios from 'axios'
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
-import 'brace/mode/javascript';
-import 'brace/theme/github';
+import 'brace/mode/javascript'
+import 'brace/theme/github'
 
 import { highlight, log } from 'utils' 
 
@@ -26,8 +26,8 @@ const runCode = userCode =>
   axios.post('/api/run/nodejs', {
     userCode
   })
-  .then(highlight('data'))
-  .then(log)
+    .then(highlight('data'))
+    .then(log)
 
 const SandboxPage = ({ classes }) => {
   const [code, setCode] = useState('')

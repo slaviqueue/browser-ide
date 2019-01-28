@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import { ReactTerminalStateless } from 'react-terminal-component';
-import { EmulatorState } from 'javascript-terminal';
+import React from 'react'
 import styled from 'styled-components'
 
 const TerminalWrapper = styled.pre`

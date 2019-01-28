@@ -1,16 +1,13 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
-import axios from 'axios'
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-
-import { highlight } from 'utils'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
 import LanguageSelectionPage from './pages/LanguageSelectionPage'
-import Sandbox from './pages/Sandbox'
+import Sandbox from './pages/SandboxPage'
 
 const AppContainer = styled.div`
     width: 100%;
