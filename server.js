@@ -28,10 +28,10 @@ app.post('/api/run/:language', (req, res) => {
     .catch(log)
 })
 
-app.use(express.static(path.join(__dirname, 'client/public')))
+app.use(express.static(path.join(__dirname, 'client/public'))) /*global __dirname*/
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'client/public', 'index.html'))
+  res.sendFile(path.join(__dirname, 'client/public', 'index.html')) /*global __dirname*/
 })
 
 app.listen(PORT_NUMBER, () => log(`Listening on port ${ PORT_NUMBER }`))
