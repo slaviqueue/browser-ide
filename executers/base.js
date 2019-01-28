@@ -7,8 +7,7 @@ const exec = command =>
     execCb(
       command, 
       (err, stdout, stderr) => err ? reject({ err, stdout, stderr }) : resolve({ err, stdout, stderr })
-    )
-  )
+    ))
 
 const writeFile = (path, data) =>
   new Promise((resolve, reject) =>
@@ -16,8 +15,7 @@ const writeFile = (path, data) =>
       path,
       data,
       err => err ? reject(err) : resolve()
-    )
-  )
+    ))
 
 const unlink = path =>
   new Promise((resolve, reject) =>
@@ -33,7 +31,7 @@ export default (language, dockerCmd) => code => {
                     -v $(pwd)/pool/${ container }:/usr/share/index \
                     --name ${ container } ${ language }:executors \
                     /bin/bash -c "${ dockerCmd }";
-                  docker rm -f ${ container } || true`
+                  docker rm -f ${ container }`
 
   return writeFile(`./pool/${ container }`, code)
     .then(() => exec(command))
