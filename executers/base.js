@@ -8,7 +8,10 @@ const exec = command =>
       (err, stdout, stderr) => err ? reject({ err, stdout, stderr }) : resolve({ err, stdout, stderr })
     )
   )
-    
+
+// todo
+// set resourses and execution time limit per container
+
 export default (language, dockerCmd) => {
   const container = generageContainerName(language)
   const command = `timeout --signal=SIGTERM 2 \
