@@ -81,3 +81,5 @@ typings/
 
 client/public/main.js
 client/node_modules
+
+pool/**.*

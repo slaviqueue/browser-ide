@@ -1,4 +1,3 @@
 import execute from './base'
 
-export default code =>
-  execute('nodejs', `node -e '${ code }'`)
+export default execute('nodejs', 'node /usr/share/index')
