@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 
 import executeNodejs from './executers/nodejs'
+import executeRuby from './executers/ruby'
 import { log } from './utils'
 
 const app = express()
@@ -12,7 +13,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const executors = {
-  nodejs: executeNodejs
+  nodejs: executeNodejs,
+  ruby: executeRuby,
 }
 
 app.post('/api/run/:language', (req, res) => {

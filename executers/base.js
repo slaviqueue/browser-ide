@@ -37,7 +37,7 @@ export default (language, dockerCmd) => code => {
     .then(() => exec(command))
     .then(log)
     .catch(err =>
-      exec(`docker rm ${ container }`).then(() => log(err)))
+      (log(err), exec(`docker rm ${ container }`)))
     .then(res => (unlink(`./pool/${ container }`), res))
     .then(({ err, stderr, stdout }) => (err && err.err) || stderr || removeLastLine(stdout))
 }
