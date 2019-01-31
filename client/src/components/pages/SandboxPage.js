@@ -29,6 +29,11 @@ const ButtonWrapper = styled.div`
   display: block;
 `
 
+const languageToAceModeMapping = {
+  nodejs: 'javascript',
+  ruby: 'ruby',
+}
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit * 2,
@@ -75,7 +80,7 @@ const SandboxPage = ({ classes, match }) => {
 
       <EditorWrapper>
         <AceEditor
-          mode={ language }
+          mode={ languageToAceModeMapping[language] }
           theme="github"
           value={ code }
           width="50%"
