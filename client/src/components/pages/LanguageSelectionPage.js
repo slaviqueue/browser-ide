@@ -32,10 +32,14 @@ const LanguageSelectionPage = ({ history }) => (
         
       <Select
         value="NodeJS"
-        onChange={() => delayed(history.push, 300, '/sandbox/nodejs')}
+        onChange={({ target: { value } }) => delayed(history.push, 300, `/sandbox/${ value.toLowerCase() }`)}
       >
         <MenuItem value="NodeJS">
           NodeJS
+        </MenuItem>
+
+        <MenuItem value="Ruby">
+          Ruby
         </MenuItem>
       </Select>
     </LanguageSelectorContainer>

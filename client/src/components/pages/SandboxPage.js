@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
 import 'brace/mode/javascript'
+import 'brace/mode/ruby'
 import 'brace/theme/github'
 
 import { highlight, log } from 'utils' 
@@ -34,14 +35,16 @@ const styles = theme => ({
   }
 })
 
-const runCode = userCode => 
-  axios.post('/api/run/nodejs', {
+const runCode = (userCode, language) => 
+  axios.post(`/api/run/${ language }`, {
     userCode
   })
     .then(highlight('data'))
     .then(log)
 
-const SandboxPage = ({ classes }) => {
+const SandboxPage = ({ classes, match }) => {
+  const { params: { language } } = match
+
   const [code, setCode] = useState('')
   const [output, setOutput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -53,7 +56,7 @@ const SandboxPage = ({ classes }) => {
 
   const sendCode = () => (
     setIsLoading(true),
-    runCode(code).then(output => setData(output, false))
+    runCode(code, language).then(output => setData(output, false))
   )
 
   return (
@@ -72,7 +75,7 @@ const SandboxPage = ({ classes }) => {
 
       <EditorWrapper>
         <AceEditor
-          mode="javascript"
+          mode={ language }
           theme="github"
           value={ code }
           width="50%"
