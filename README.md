@@ -2,6 +2,8 @@
 
 Small programming sandbox. User's code runs in docker containers on backend.
 
+![](screenshot.png)
+
 ## How to install locally
 
 1. Run `prepare.sh`. It will build required docker images.
