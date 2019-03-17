@@ -22,11 +22,16 @@ const SandboxWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100%  - 56px);
+  height: calc(100%  - 64px);
+
+  @media (max-width: 600px) {
+    height: calc(100%  - 56px);
+  }
 `
 
 const EditorWrapper = styled.div`
   display: flex;
+  margin-top: -8%;
   max-width: 900px;
   max-height: 600px;
   width: 80%;
@@ -34,6 +39,7 @@ const EditorWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.4) 8px 8px 32px 1px;
 
   @media (max-width: 600px) {
+    margin-top: 0;
     box-shadow: none;
     flex-direction: column;
     max-width: 100%;
@@ -65,7 +71,7 @@ const SandboxPage = ({ history, match, location }) => {
 
   const setCode = code => (
     history.push({
-      search: `?code=${ code }`
+      search: `?code=${ encodeURIComponent(code) }`
     }),
     _setCode(code)
   )
