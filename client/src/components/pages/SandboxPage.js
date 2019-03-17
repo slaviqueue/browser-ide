@@ -31,6 +31,14 @@ const EditorWrapper = styled.div`
   width: 80%;
   height: 80%;
   box-shadow: rgba(0, 0, 0, 0.4) 8px 8px 32px 1px;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: calc(100%  - 56px);
+    margin-top: 56px;
+  }
 `
 
 const languageToAceModeMapping = {
@@ -69,9 +77,11 @@ const SandboxPage = ({ match }) => {
 
   useEffect(() => {
     window.addEventListener('keydown', handleCtrlEnterPress)
+    window.addEventListener('shake', sendCode, false)
 
     return () => {
-        window.removeEventListener('keydown', handleCtrlEnterPress);
+      window.removeEventListener('keydown', handleCtrlEnterPress)
+      window.removeEventListener('shake', sendCode)
     }
   })
 

@@ -35,5 +35,15 @@
       box-shadow: none !important;
     }
   </style>
+
+  <script type="text/javascript" src="https://cdn.rawgit.com/alexgibson/shake.js/master/shake.js"></script>
+  <script>
+      const shakeEvent = new Shake({ threshold: 15 })
+      shakeEvent.start()
+
+      const stopShake = () => shakeEvent.stop()
+
+      if(!("ondevicemotion" in window)){ alert("Shake detection os not supported on your device") }
+  </script>
 </body>
 </html>

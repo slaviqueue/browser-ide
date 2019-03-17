@@ -11,7 +11,7 @@ import Sandbox from './pages/SandboxPage'
 
 const AppContainer = styled.div`
     width: 100%;
-    height: calc(100% - 64px);
+    height: 100%;
 `
 
 const BreadCrump = styled.span`
