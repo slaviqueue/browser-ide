@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const TerminalWrapper = styled.pre`
   width: 40%;
   border-left: 1px solid #e3e3e3;
-  font-size: 16px;
+  font-size: 14px;
   padding: 12px;
   box-sizing: border-box;
   margin: 0;
