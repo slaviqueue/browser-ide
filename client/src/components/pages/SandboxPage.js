@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AceEditor from 'react-ace'
 import axios from 'axios'
 import styled from 'styled-components'
+import QueryString from 'query-string'
 
 import 'brace/mode/javascript'
 import 'brace/mode/ruby'
@@ -54,12 +55,20 @@ const runCode = (userCode, language) =>
     .then(highlight('data'))
     .then(log)
 
-const SandboxPage = ({ match }) => {
+const SandboxPage = ({ history, match, location }) => {
+  const { code: initialCodeValue = '' } = QueryString.parse(location.search)
   const { params: { language } } = match
 
-  const [ code, setCode ] = useState('')
+  const [ code, _setCode ] = useState(decodeURIComponent(initialCodeValue))
   const [ output, setOutput ] = useState('')
   const [ isLoading, setIsLoading ] = useState(false)
+
+  const setCode = code => (
+    history.push({
+      search: `?code=${ code }`
+    }),
+    _setCode(code)
+  )
 
   const setData = (output, isLoading) => (
     setOutput(output),
