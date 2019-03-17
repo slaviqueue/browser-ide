@@ -2,14 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TerminalWrapper = styled.pre`
-  width: 40%;
+  padding: 12px;
+  margin: 0;
+  flex-grow: 0.4;
+  flex-basis: 40%;
   border-left: 1px solid #e3e3e3;
   font-size: 14px;
-  padding: 12px;
   box-sizing: border-box;
-  margin: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   white-space: pre-wrap;
+
+  @media (max-width: 600px) {
+    border-left: none;
+    border-top: 1px solid #e3e3e3;
+  }
 `
 
 export default ({ children }) => (

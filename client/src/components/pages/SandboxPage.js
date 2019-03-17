@@ -21,7 +21,7 @@ const SandboxWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: calc(100%  - 56px);
 `
 
 const EditorWrapper = styled.div`
@@ -33,11 +33,12 @@ const EditorWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.4) 8px 8px 32px 1px;
 
   @media (max-width: 600px) {
+    box-shadow: none;
+    flex-direction: column;
     max-width: 100%;
     max-height: 100%;
     width: 100%;
-    height: calc(100%  - 56px);
-    margin-top: 56px;
+    height: 100%;
   }
 `
 
@@ -94,8 +95,9 @@ const SandboxPage = ({ match }) => {
           theme="github"
           fontSize={ 16 }
           value={ code }
-          width="60%"
-          height="100%"
+          width="initial"
+          height="initial"
+          className="codeEditor"
           onChange={ code => setCode(code) }
           editorProps={{ $blockScrolling: true }}
           setOptions={{
