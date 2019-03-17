@@ -30,7 +30,7 @@ const EditorWrapper = styled.div`
   max-height: 600px;
   width: 80%;
   height: 80%;
-  box-shadow: 1px 1px 32px 1px rgba(0,0,0,.3);
+  box-shadow: rgba(0, 0, 0, 0.4) 8px 8px 32px 1px;
 `
 
 const languageToAceModeMapping = {
