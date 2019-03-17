@@ -9,6 +9,7 @@ const TerminalWrapper = styled.pre`
   box-sizing: border-box;
   margin: 0;
   overflow: hidden;
+  white-space: pre-wrap;
 `
 
 export default ({ children }) => (
