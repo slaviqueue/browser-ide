@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TerminalWrapper = styled.pre`
-  width: 50%;
-  color: #19d119;
-  background-color: #2b3e50;
+  width: 40%;
+  border-left: 1px solid #e3e3e3;
   font-size: 16px;
   padding: 12px;
   box-sizing: border-box;

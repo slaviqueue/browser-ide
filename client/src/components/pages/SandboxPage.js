@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AceEditor from 'react-ace'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
 import 'brace/mode/javascript'
 import 'brace/mode/ruby'
 import 'brace/theme/github'
+
+import 'brace/snippets/javascript'
+import 'brace/snippets/ruby'
+import 'brace/ext/language_tools'
 
 import { highlight, log } from 'utils' 
 
@@ -17,28 +19,24 @@ const SandboxWrapper = styled.div`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 `
 
 const EditorWrapper = styled.div`
   display: flex;
-  height: 100%;
-`
-
-const ButtonWrapper = styled.div`
-  display: block;
+  max-width: 900px;
+  max-height: 600px;
+  width: 80%;
+  height: 80%;
+  box-shadow: 1px 1px 32px 1px rgba(0,0,0,.3);
 `
 
 const languageToAceModeMapping = {
   nodejs: 'javascript',
   ruby: 'ruby',
 }
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit * 2,
-  }
-})
 
 const runCode = (userCode, language) => 
   axios.post(`/api/run/${ language }`, {
@@ -47,12 +45,12 @@ const runCode = (userCode, language) =>
     .then(highlight('data'))
     .then(log)
 
-const SandboxPage = ({ classes, match }) => {
+const SandboxPage = ({ match }) => {
   const { params: { language } } = match
 
-  const [code, setCode] = useState('')
-  const [output, setOutput] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [ code, setCode ] = useState('')
+  const [ output, setOutput ] = useState('')
+  const [ isLoading, setIsLoading ] = useState(false)
 
   const setData = (output, isLoading) => (
     setOutput(output),
@@ -64,31 +62,39 @@ const SandboxPage = ({ classes, match }) => {
     runCode(code, language).then(output => setData(output, false))
   )
 
+  const handleCtrlEnterPress = ({ ctrlKey, keyCode }) => {
+    if (ctrlKey && keyCode === 13)
+      sendCode()
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleCtrlEnterPress)
+
+    return () => {
+        window.removeEventListener('keydown', handleCtrlEnterPress);
+    }
+  })
+
   return (
     <SandboxWrapper>
-      <ButtonWrapper>
-        <Button
-          variant="contained"
-          color="primary"
-          className={ classes.button }
-          disabled={ isLoading }
-          onClick={ sendCode }
-        >
-          Run code
-        </Button>
-      </ButtonWrapper>
-
       <EditorWrapper>
         <AceEditor
+          name="code-editor"
           mode={ languageToAceModeMapping[language] }
           theme="github"
+          fontSize={ 16 }
           value={ code }
-          width="50%"
+          width="60%"
           height="100%"
           onChange={ code => setCode(code) }
-          name="code-editor"
           editorProps={{ $blockScrolling: true }}
-          fontSize={ 16 }
+          setOptions={{
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            showLineNumbers: true,
+            showPrintMargin: false,
+            tabSize: 2,
+          }}
         />
 
         <Terminal>
@@ -99,4 +105,4 @@ const SandboxPage = ({ classes, match }) => {
   )
 }
 
-export default withStyles(styles)(SandboxPage)
+export default SandboxPage
