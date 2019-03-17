@@ -92,6 +92,7 @@ const SandboxPage = ({ history, match, location }) => {
   }
 
   useEffect(() => {
+    window.dispatchEvent(new Event('resize'))
     window.addEventListener('keydown', handleCtrlEnterPress)
     window.addEventListener('shake', sendCode, false)
 
@@ -111,7 +112,7 @@ const SandboxPage = ({ history, match, location }) => {
           fontSize={ 16 }
           value={ code }
           width="initial"
-          height="initial"
+          height="100%"
           className="codeEditor"
           onChange={ code => setCode(code) }
           editorProps={{ $blockScrolling: true }}
