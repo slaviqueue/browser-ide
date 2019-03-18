@@ -2,6 +2,10 @@
 
 Small programming sandbox. User's code runs in docker containers on backend.
 
+To execute code on desktop press Ctrl+Enter. To execute on mobile just shake your device.
+
+Also you can share your code by sending current url, it autimatically syncs while you're typing.
+
 ![](screenshot.png)
 
 ## How to install locally
