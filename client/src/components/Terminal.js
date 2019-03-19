@@ -16,6 +16,10 @@ const TerminalWrapper = styled.pre`
     border-left: none;
     border-top: 1px solid #e3e3e3;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export default ({ children }) => (
